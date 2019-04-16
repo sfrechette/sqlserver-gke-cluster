@@ -1,4 +1,4 @@
-#mssql volume claim: mssql-volume.yaml
+# mssql volume claim: mssql-volume.yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
