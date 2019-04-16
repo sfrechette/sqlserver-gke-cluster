@@ -1,0 +1,11 @@
+#mssql volume claim: mssql-volume.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mssql-volume
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
