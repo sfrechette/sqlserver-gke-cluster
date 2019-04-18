@@ -1,8 +1,8 @@
-# mssql volume claim: mssql-volume.yaml
+# sqlserver volume claim: mssql-volume.yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: mssql-volume
+  name: sqlserver-volume
 spec:
   accessModes:
     - ReadWriteOnce

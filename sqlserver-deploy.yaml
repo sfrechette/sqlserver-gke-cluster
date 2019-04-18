@@ -1,18 +1,18 @@
-# mssql deployment an service: mssql-deploy.yaml
+# sqlserver deployment an service: mssql-deploy.yaml
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: mssql-deployment
+  name: sqlserver-deployment
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: mssql
+        app: sqlserver
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: mssql
+      - name: sqlserver
         image: mcr.microsoft.com/mssql/server:2017-latest
         ports:
         - containerPort: 1433
@@ -22,23 +22,23 @@ spec:
         - name: SA_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mssql-secret
+              name: sqlserver-secret
               key: SA_PASSWORD          
         volumeMounts:
-        - name: mssql-volume
+        - name: sqlserver-volume
           mountPath: /var/opt/mssql
       volumes:
-      - name: mssql-volume
+      - name: sqlserver-volume
         persistentVolumeClaim:
-          claimName: mssql-volume  
+          claimName: sqlserver-volume  
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mssql-deployment
+  name: sqlserver-deployment
 spec:
   selector:
-    app: mssql
+    app: sqlserver
   ports:
     - protocol: TCP
       port: 1433
