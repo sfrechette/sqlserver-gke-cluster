@@ -1,4 +1,4 @@
-# sqlserver deployment an service: mssql-deploy.yaml
+# sqlserver deployment an service: sqlserver-deploy.yaml
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
