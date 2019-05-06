@@ -1,4 +1,4 @@
-# sqlserver deployment an service: sqlserver-deploy.yaml
+# sqlserver deployment and service: sqlserver-deploy.yaml
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
@@ -8,11 +8,11 @@ spec:
   template:
     metadata:
       labels:
-        app: sqlserver
+        app: ms-sqlserver
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: sqlserver
+      - name: ms-sqlserver
         image: mcr.microsoft.com/mssql/server:2017-latest
         ports:
         - containerPort: 1433
@@ -38,7 +38,7 @@ metadata:
   name: sqlserver-deployment
 spec:
   selector:
-    app: sqlserver
+    app: ms-sqlserver
   ports:
     - protocol: TCP
       port: 1433
