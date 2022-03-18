@@ -1,10 +1,13 @@
 # sqlserver deployment and service: sqlserver-deploy.yaml
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sqlserver-deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: ms-sqlserver
   template:
     metadata:
       labels:
@@ -23,14 +26,14 @@ spec:
           valueFrom:
             secretKeyRef:
               name: sqlserver-secret
-              key: SA_PASSWORD          
+              key: SA_PASSWORD
         volumeMounts:
         - name: sqlserver-volume
           mountPath: /var/opt/mssql
       volumes:
       - name: sqlserver-volume
         persistentVolumeClaim:
-          claimName: sqlserver-volume  
+          claimName: sqlserver-volume
 ---
 apiVersion: v1
 kind: Service
@@ -44,3 +47,4 @@ spec:
       port: 1433
       targetPort: 1433
   type: LoadBalancer
+
